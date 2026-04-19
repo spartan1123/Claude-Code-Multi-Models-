@@ -1,9 +1,10 @@
 @echo off
 REM Claudish Windows Launcher
-REM Bypasses the broken Node.js Bun-finder (uses Unix "which" command)
-REM by calling Bun directly.
 REM
-REM SETUP: Edit the two paths below to match your Windows username.
-REM Then copy this file to: %APPDATA%\npm\claudish.cmd
+REM SETUP: Copy this file to %APPDATA%\npm\claudish.cmd
+REM        Optionally set CLAUDISH_HOME env var if you move the folder:
+REM          setx CLAUDISH_HOME "D:\your\new\path\Claude-Code-Multi-Models"
+REM        Otherwise it defaults to the path below.
 
-"C:\Users\%USERNAME%\.bun\bin\bun.exe" "C:\Users\%USERNAME%\.bun\install\cache\claudish@7.0.1@@@1\dist\index.js" %*
+if "%CLAUDISH_HOME%"=="" set CLAUDISH_HOME=C:\Users\%USERNAME%\Documents\Claude-Code-Multi-Models
+"%USERPROFILE%\.bun\bin\bun.exe" "%CLAUDISH_HOME%\claudish-dist.js" %*
